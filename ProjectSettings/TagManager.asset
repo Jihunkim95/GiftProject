@@ -12,6 +12,8 @@ TagManager:
   - SoloChest2
   - SoloChest3
   - SoloChest4
+  - CompletionObject
+  - TriggerObject
   layers:
   - Default
   - TransparentFX

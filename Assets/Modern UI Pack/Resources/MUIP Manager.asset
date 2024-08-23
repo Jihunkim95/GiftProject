@@ -17,7 +17,7 @@ MonoBehaviour:
   editorHints: 0
   animatedIconColor: {r: 1, g: 1, b: 1, a: 1}
   contextBackgroundColor: {r: 0.21568628, g: 0.29411766, b: 0.37254903, a: 1}
-  buttonFont: {fileID: 11400000, guid: 3acd3df91e54346b6a7079a4f9850168, type: 2}
+  buttonFont: {fileID: 11400000, guid: 84dd14695854bbc43a5faa24fcf93d0d, type: 2}
   buttonNormalColor: {r: 0.21568628, g: 0.29411766, b: 0.37254903, a: 255}
   buttonAccentColor: {r: 1, g: 1, b: 1, a: 255}
   buttonDisabledAlpha: 0.4
@@ -28,10 +28,10 @@ MonoBehaviour:
   dropdownPrimaryColor: {r: 1, g: 1, b: 1, a: 255}
   dropdownItemBackgroundColor: {r: 0.13725491, g: 0.21568628, b: 0.29411766, a: 255}
   dropdownItemPrimaryColor: {r: 1, g: 1, b: 1, a: 255}
-  selectorFont: {fileID: 11400000, guid: 8daa2a78081b143c2b22fdab46ec7a7e, type: 2}
+  selectorFont: {fileID: 11400000, guid: 4bd810f1cbcb0f446a8f5a31453e243f, type: 2}
   selectorColor: {r: 1, g: 1, b: 1, a: 1}
   selectorHighlightedColor: {r: 0.1764706, g: 0.25490198, b: 0.33333334, a: 1}
-  inputFieldFont: {fileID: 11400000, guid: 8daa2a78081b143c2b22fdab46ec7a7e, type: 2}
+  inputFieldFont: {fileID: 11400000, guid: 4bd810f1cbcb0f446a8f5a31453e243f, type: 2}
   inputFieldColor: {r: 1, g: 1, b: 1, a: 1}
   modalWindowTitleFont: {fileID: 11400000, guid: fa328c1ae3ffb6b4583cf371153b0be6, type: 2}
   modalWindowContentFont: {fileID: 11400000, guid: 4bd810f1cbcb0f446a8f5a31453e243f, type: 2}
@@ -78,7 +78,7 @@ MonoBehaviour:
   tooltipFontSize: 22
   tooltipTextColor: {r: 1, g: 1, b: 1, a: 1}
   tooltipBackgroundColor: {r: 0.1764706, g: 0.25490198, b: 0.33333334, a: 1}
-  customObjPrimaryFont: {fileID: 11400000, guid: 8daa2a78081b143c2b22fdab46ec7a7e, type: 2}
-  customObjSecondaryFont: {fileID: 11400000, guid: 57cf3969e334c4b29a685c2a271f99ca, type: 2}
+  customObjPrimaryFont: {fileID: 11400000, guid: 4bd810f1cbcb0f446a8f5a31453e243f, type: 2}
+  customObjSecondaryFont: {fileID: 11400000, guid: fa328c1ae3ffb6b4583cf371153b0be6, type: 2}
   customObjPrimaryColor: {r: 1, g: 1, b: 1, a: 255}
   customObjSecondaryColor: {r: 0, g: 0, b: 0, a: 255}
