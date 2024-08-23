@@ -19,7 +19,7 @@ public class Collections : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Time.deltaTime);
+        // Debug.Log(Time.deltaTime);
         transform.Rotate(0,rotationSpeed * Time.deltaTime,0);
     }
 

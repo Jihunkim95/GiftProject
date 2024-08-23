@@ -57,6 +57,11 @@ namespace StarterAssets
 
         [Tooltip("What layers the character uses as ground")]
         public LayerMask GroundLayers;
+        [Header("Swimming")]
+        public LayerMask WaterLayer;  // 물과 충돌을 감지할 레이어
+        public float SwimSpeed = 2.0f;  // 수영 속도
+        private bool _isSwimming = false;  // 현재 수영 중인지 여부
+        private int _animIDSwim;  // 수영 애니메이션 파라미터 ID
 
         [Header("Cinemachine")]
         [Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
@@ -155,15 +160,44 @@ namespace StarterAssets
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
-
-            JumpAndGravity();
-            GroundedCheck();
-            Move();
+            if (_isSwimming)
+            {                
+                Swim();
+            }else
+            {
+                JumpAndGravity();
+                GroundedCheck();
+                Move();
+            }
         }
 
         private void LateUpdate()
         {
             CameraRotation();
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+
+            if (((1 << other.gameObject.layer) & WaterLayer) != 0)  // 물과 충돌했는지 확인
+            {
+                Debug.Log("수영시작");
+                _isSwimming = true;
+                _animator.SetBool(_animIDSwim, true);  // 수영 애니메이션 활성화
+                
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (((1 << other.gameObject.layer) & WaterLayer) != 0)  // 물을 벗어났는지 확인
+            {
+                Debug.Log("물 밖");
+
+                _animator.SetBool("isSwimUpward", false);  // 수영 애니메이션 비활성화
+                _animator.SetBool("isSwimForward", false);  // 수영 애니메이션 비활성화
+                _isSwimming = false;
+                _animator.SetBool(_animIDSwim, false);  // 수영 애니메이션 비활성화
+            }
         }
 
         private void AssignAnimationIDs()
@@ -173,6 +207,9 @@ namespace StarterAssets
             _animIDJump = Animator.StringToHash("Jump");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+            _animIDSwim = Animator.StringToHash("isSwim");  // 수영 애니메이션 ID 추가
+
+
         }
 
         private void GroundedCheck()
@@ -390,5 +427,62 @@ namespace StarterAssets
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
         }
+
+        private void Swim()
+        {
+            // 수영 중인 경우에도 이동 로직을 반영합니다.
+            float targetSpeed = SwimSpeed;
+
+            // Check if there's any input
+            if (_input.move == Vector2.zero) 
+            {
+                targetSpeed = 0.0f;
+            }
+
+            // Normalize input direction
+            Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+
+            // Calculate rotation based on input direction and main camera orientation
+            if (_input.move != Vector2.zero)
+            {
+                _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
+                float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
+
+                // Rotate the player to face the input direction
+                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+            }
+
+            // Calculate movement direction
+            Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+
+            // Move the player using CharacterController
+            _controller.Move(targetDirection.normalized * (targetSpeed * Time.deltaTime));
+
+
+            // 수영 중 움직이는지에 따라 애니메이션 전환
+            if (_input.move == Vector2.zero)
+            {
+                // Debug.Log("SwimUpward");
+                // _animator.SetFloat(_animIDSpeed, 0);
+                _animator.SetBool("isSwimUpward", true); 
+                _animator.SetBool("isSwimForward", false);
+
+            }
+            else
+            {
+                // Debug.Log("SwimForward 수영좀 하자 제발 아오");
+                _animator.SetBool("isSwimForward", true); 
+                _animator.SetBool("isSwimUpward", false); 
+            }
+
+            // Update animator with swimming speed
+            if (_hasAnimator)
+            {
+                _animator.SetFloat(_animIDSpeed, targetSpeed);
+            }
+        }
+
     }
+
+
 }
