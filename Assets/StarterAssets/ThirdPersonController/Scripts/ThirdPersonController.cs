@@ -183,7 +183,6 @@ namespace StarterAssets
             if (((1 << other.gameObject.layer) & WaterLayer) != 0)  // 물과 충돌했는지 확인
             {
                 Debug.Log("수영시작");
-
                 _isSwimming = true;
                 _animator.SetBool(_animIDSwim, true);  // 수영 애니메이션 활성화
                 
