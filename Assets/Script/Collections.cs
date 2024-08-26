@@ -23,14 +23,14 @@ public class Collections : MonoBehaviour
         transform.Rotate(0,rotationSpeed * Time.deltaTime,0);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             StartCoroutine(HandleCollection());
         }
     }
-
+    
     private IEnumerator HandleCollection()
     {
         // 효과음 재생
