@@ -7,31 +7,16 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <script>
-      window.addEventListener("focus", function() {
-          var canvas = document.getElementById("unity-canvas");
-          if (canvas) {
-              canvas.focus();
-          }
-      });
-
-      function LockMouse() {
-          var canvas = document.getElementById("unity-canvas");
-          if (canvas.requestPointerLock) {
-              canvas.requestPointerLock();
-          }
-      }
-
-      document.addEventListener("click", LockMouse);
-
       document.addEventListener("visibilitychange", function() {
           if (document.visibilityState === "visible") {
               var canvas = document.getElementById("unity-canvas");
               if (canvas) {
                   canvas.focus();
+                  canvas.dispatchEvent(new Event('click')); // 클릭 이벤트를 강제로 발생시켜 포커스 설정
               }
           }
       });
-    </script>
+  </script>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
