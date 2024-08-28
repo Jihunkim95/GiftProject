@@ -54,8 +54,11 @@ MonoBehaviour:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-defbebc4e05744d67a6e496b10d18bc2-2098666224878245731-0
         - globalObjectIdString: GlobalObjectId_V1-2-defbebc4e05744d67a6e496b10d18bc2-1036833786-0
+        - globalObjectIdString: GlobalObjectId_V1-2-defbebc4e05744d67a6e496b10d18bc2-1417300171-0
         values:
         - colorIndex: 4
           iconNameOrGuid: Canvas Icon
+        - colorIndex: 3
+          iconNameOrGuid: cs Script Icon
         - colorIndex: 3
           iconNameOrGuid: cs Script Icon
