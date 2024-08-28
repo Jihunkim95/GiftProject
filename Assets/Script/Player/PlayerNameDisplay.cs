@@ -15,7 +15,7 @@ public class PlayerNameDisplay : MonoBehaviour
         if (PlayerPrefs.HasKey("CharacterName"))
         {
             string playerName = PlayerPrefs.GetString("CharacterName");
-
+            Debug.Log("PlayerNameDisplay");
             if (nameText != null)
             {
                 nameText.text = playerName; // 텍스트 컴포넌트에 이름을 표시합니다.
@@ -29,6 +29,7 @@ public class PlayerNameDisplay : MonoBehaviour
 
     }
 
+    // 인게임 Player Name 위치
     private void LateUpdate()
     {
         if (player != null)
@@ -43,11 +44,8 @@ public class PlayerNameDisplay : MonoBehaviour
 
     public void SetCharacterName(string name)
     {
-        Debug.Log("SetCharacterName: "+ name);
         if (nameText != null)
         {
-                    Debug.Log("nameText.text: "+ nameText.text);
-
             nameText.text = name;
         }
     }

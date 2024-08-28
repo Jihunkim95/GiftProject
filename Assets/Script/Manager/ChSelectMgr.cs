@@ -13,9 +13,9 @@ public class ChSelectMgr : MonoBehaviour
     public Button PrevButton;
     public ButtonManager ConfirmButton;
     public TMP_InputField characterNameText;
-    public PlayerNameDisplay playerNameDisplay;
     private int p = 0;
-    
+        private PlayerNameDisplay playerNameDisplay;
+
     void Start()
     {
         // 버튼에 이벤트 리스너를 추가합니다.
@@ -28,10 +28,8 @@ public class ChSelectMgr : MonoBehaviour
 
     public void Next()
     {
-        Debug.Log("gd");
         if(p < characters.Length-1)
         {
-            Debug.Log("gd");
             characters[p].SetActive(false);
             p++;
             characters[p].SetActive(true);
@@ -59,12 +57,8 @@ public class ChSelectMgr : MonoBehaviour
 
     void ConfirmSelection()
     {
-        Debug.Log("Selected Character: " + characters[p].name);
-        Debug.Log("characterNameText: " + characterNameText.text);
-
         // 추가 로직: 캐릭터를 게임에서 사용할 수 있도록 설정
         // 캐릭터 이름을 업데이트합니다.
-        // 캐릭터 이름을 PlayerPrefs에 저장합니다.
         if(characterNameText != null)
         {
             PlayerPrefs.SetString("CharacterName", characterNameText.text);
@@ -74,16 +68,4 @@ public class ChSelectMgr : MonoBehaviour
         // 씬 전환
         SceneManager.LoadScene("GiftScenes"); // "GameScene"을 원하는 씬 이름으로 변경하세요.
     }
-        // 캐릭터 이름을 업데이트하는 메서드 추가
-    public void UpdateCharacterName()
-    {
-        Debug.Log("playerNameDisplay:" + playerNameDisplay);
-        if (characterNameText != null && playerNameDisplay != null)
-        {
-        Debug.Log("UpdateCharacterName 호출: " + characterNameText.text);
-
-            playerNameDisplay.SetCharacterName(characterNameText.text);
-        }
-    }
-
 }
