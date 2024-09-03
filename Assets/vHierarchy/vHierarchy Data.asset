@@ -29,6 +29,7 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-828d50cbd8c6641588de827ed7e8705c-347753690-0
         - globalObjectIdString: GlobalObjectId_V1-2-828d50cbd8c6641588de827ed7e8705c-633110454-0
         - globalObjectIdString: GlobalObjectId_V1-2-828d50cbd8c6641588de827ed7e8705c-1236249218-0
+        - globalObjectIdString: GlobalObjectId_V1-2-828d50cbd8c6641588de827ed7e8705c-589713834-0
         values:
         - colorIndex: 4
           iconNameOrGuid: AvatarMask On Icon
@@ -50,6 +51,8 @@ MonoBehaviour:
           iconNameOrGuid: ParticleSystem Icon
         - colorIndex: 0
           iconNameOrGuid: Terrain Icon
+        - colorIndex: 6
+          iconNameOrGuid: 
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-defbebc4e05744d67a6e496b10d18bc2-2098666224878245731-0
