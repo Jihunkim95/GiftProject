@@ -159,11 +159,18 @@ namespace StarterAssets
 
         private void Update()
         {
+            // if (!NPCDialogue.isDialogueActive)
+            // {
+            //     JumpAndGravity();
+            //     GroundedCheck();
+            //     Move();
+            // }
+
             _hasAnimator = TryGetComponent(out _animator);
             if (_isSwimming)
             {                
                 Swim();
-            }else
+            }else if (!NPCDialogue.isDialogueActive) // 대화 UI가 활성화되어 있지 않을 때만 움직임 업데이트
             {
                 JumpAndGravity();
                 GroundedCheck();

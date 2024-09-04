@@ -17,7 +17,7 @@ public class GameSceneMgr : MonoBehaviour
         playerAnimator = playerArmature.GetComponent<Animator>();
 
         if (playerAnimator == null)
-        {
+        {   
             Debug.LogError("Animator is missing on playerArmature!");
             return;
         }
@@ -40,6 +40,5 @@ public class GameSceneMgr : MonoBehaviour
         playerAnimator.Rebind(); // Animator 초기화
         playerAnimator.Update(0); // Animator가 상태를 업데이트할 수 있도록 0으로 업데이트합니다.
 
-        Debug.Log("Selected character instantiated and Animator is set up.");
     }
 }

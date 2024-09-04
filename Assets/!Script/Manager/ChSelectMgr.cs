@@ -66,6 +66,8 @@ public class ChSelectMgr : MonoBehaviour
             PlayerPrefs.Save();  // PlayerPrefs를 저장합니다.
         }
 
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         // 씬 전환
         SceneManager.LoadScene("GiftScenes"); // "GameScene"을 원하는 씬 이름으로 변경하세요.
     }
