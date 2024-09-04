@@ -49,4 +49,10 @@ public class PlayerNameDisplay : MonoBehaviour
             nameText.text = name;
         }
     }
+    
+    // 플레이어 이름을 반환하는 메서드 추가
+    public string GetPlayerName()
+    {
+        return nameText.text;
+    }
 }

@@ -50,4 +50,9 @@ public class Timer : MonoBehaviour
         startTime = 0f;
         timerText.text = "00:00.00";
     }
+
+    public float GetElapsedTime()
+    {
+        return startTime;
+    }
 }
