@@ -61,6 +61,8 @@ public class ChSelectMgr : MonoBehaviour
         if (characterNameText.text.Length > 5)
         {
             StateTxt.text = "5글자 이하로 입력해주세요.";
+        }else if(characterNameText.text.Length == 0){
+            StateTxt.text = "캐릭명을 입력해주세요.";
         }else{
             // 선택한 캐릭터 인덱스를 저장합니다.
             PlayerPrefs.SetInt("SelectedCharacterIndex", p);
