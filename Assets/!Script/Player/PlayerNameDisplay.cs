@@ -15,7 +15,7 @@ public class PlayerNameDisplay : MonoBehaviour
         if (PlayerPrefs.HasKey("CharacterName"))
         {
             string playerName = PlayerPrefs.GetString("CharacterName");
-            Debug.Log("PlayerNameDisplay");
+            // Debug.Log("PlayerNameDisplay");
             if (nameText != null)
             {
                 nameText.text = playerName; // 텍스트 컴포넌트에 이름을 표시합니다.

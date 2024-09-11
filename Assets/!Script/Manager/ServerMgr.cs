@@ -32,7 +32,7 @@ public class ServerMgr : MonoBehaviour
 
     private IEnumerator SendDataCoroutine(string playerName, float time)
     {
-        string url = "http://localhost:3000/api/save-time"; // 서버의 API 엔드포인트
+        string url = "https://api.cloudengineering.store/api/save-time"; // 서버의 API 엔드포인트
 
         // JSON 형식으로 데이터를 생성
         string json = JsonUtility.ToJson(new TimeAttackData(playerName, time));

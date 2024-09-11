@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class LBFetcher : MonoBehaviour
 {
-    public string apiUrl = "http://localhost:3000/api/get-times"; // 서버 API 엔드포인트
+    public string apiUrl = "https://api.cloudengineering.store/api/get-times"; // 서버 API 엔드포인트
     public GameObject rowPrefab; // Row 프리팹 (Prefab 자체는 삭제되지 않음)
     public Transform tableTransform; // Table의 Transform (Content 또는 Entry)
     public Button refreshButton; // 버튼
@@ -49,17 +49,20 @@ public class LBFetcher : MonoBehaviour
         refreshButton.interactable = true; // 버튼 활성화
 
     }
+
     // 서버에서 데이터를 가져오는 코루틴
     private IEnumerator FetchLeaderboardData()
     {
         UnityWebRequest request = UnityWebRequest.Get(apiUrl);
-        Debug.Log("Sending Request to: " + apiUrl);
-
+        // Debug.Log("Sending Request to: " + apiUrl);
+        request.timeout = 10;  // 타임아웃 시간을 10초로 설정
         yield return request.SendWebRequest();
 
-        if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+        if (request.isNetworkError)
         {
             Debug.LogError("Error fetching leaderboard data: " + request.error);
+            Debug.LogError("HTTP Response Code: " + request.responseCode);  // 응답 코드 추가 출력
+
         }
         else
         {
@@ -67,7 +70,7 @@ public class LBFetcher : MonoBehaviour
 
             // JSON 데이터를 파싱하여 리스트로 변환
             string jsonResult = request.downloadHandler.text;
-            Debug.Log("JSON Result: " + jsonResult);
+            // Debug.Log("JSON Result: " + jsonResult);
 
             try
             {
@@ -112,7 +115,7 @@ public class LBFetcher : MonoBehaviour
 
             RankTxt.text = (i + 1).ToString();
             NameTxt.text = playerData.player_name;
-            TimeTxt.text = playerData.time.ToString("F2");
+            TimeTxt.text = playerData.time.ToString("F3");
 
             // UI 활성화
             RankTxt.enabled = true;
