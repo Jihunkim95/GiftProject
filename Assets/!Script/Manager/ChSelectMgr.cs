@@ -13,6 +13,8 @@ public class ChSelectMgr : MonoBehaviour
     public Button PrevButton;
     public ButtonManager ConfirmButton;
     public TMP_InputField characterNameText;
+    public TMP_Text StateTxt;
+
     private int p = 0;
 
     void Start()
@@ -56,19 +58,25 @@ public class ChSelectMgr : MonoBehaviour
 
     void ConfirmSelection()
     {
-        // 선택한 캐릭터 인덱스를 저장합니다.
-        PlayerPrefs.SetInt("SelectedCharacterIndex", p);
-        // 추가 로직: 캐릭터를 게임에서 사용할 수 있도록 설정
-        // 캐릭터 이름을 업데이트합니다.
-        if(characterNameText != null)
+        if (characterNameText.text.Length > 5)
         {
-            PlayerPrefs.SetString("CharacterName", characterNameText.text);
-            PlayerPrefs.Save();  // PlayerPrefs를 저장합니다.
-        }
+            StateTxt.text = "5글자 이하로 입력해주세요.";
+        }else{
+            // 선택한 캐릭터 인덱스를 저장합니다.
+            PlayerPrefs.SetInt("SelectedCharacterIndex", p);
+            // 추가 로직: 캐릭터를 게임에서 사용할 수 있도록 설정
+            // 캐릭터 이름을 업데이트합니다.
+            if(characterNameText != null)
+            {
+                PlayerPrefs.SetString("CharacterName", characterNameText.text);
+                PlayerPrefs.Save();  // PlayerPrefs를 저장합니다.
+            }
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        // 씬 전환
-        SceneManager.LoadScene("GiftScenes"); // "GameScene"을 원하는 씬 이름으로 변경하세요.
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            // 씬 전환
+            SceneManager.LoadScene("GiftScenes"); // "GameScene"을 원하는 씬 이름으로 변경하세요.
+        }
+ 
     }
 }
