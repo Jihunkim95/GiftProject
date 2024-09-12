@@ -115,7 +115,13 @@ public class LBFetcher : MonoBehaviour
 
             RankTxt.text = (i + 1).ToString();
             NameTxt.text = playerData.player_name;
-            TimeTxt.text = playerData.time.ToString("F3");
+            
+            float totalSeconds = playerData.time;
+
+            //분 초 나누기
+            int minutes = (int)(totalSeconds/60); // 분 단위 변환
+            float seconds = totalSeconds % 60; // 남은 초 계산
+            TimeTxt.text = $"{minutes}:{seconds:F3}";
 
             // UI 활성화
             RankTxt.enabled = true;
